@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>GCMO</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+    <div id="form" class="container mt-3">
+        <h2 class="text-center">Accedi</h2>
+        <div class="mb-3">
+            <label for="exampleInputEmail" class="form-label">Email address</label>
+            <input type="email" id="email" class="form-control" value="" placeholder="name@example.com"
+                aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword" class="form-label">Password</label>
+            <input type="password" id="password" class="form-control" value="" placeholder="password">
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="login()">Accedi</button> oppure <a
+            href="signIn.html">Registrati</a>
+    </div>
+
+    <div id="loggato" class="container visually-hidden">
+
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="homepage.html">GCMO</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="homepage.html">Home</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="ricercaPer" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Ricerca canzoni per
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="searchTrack.html">Track</a></li>
+                                <li><a class="dropdown-item" href="searchAlbum.html">Album</a></li>
+                                <li><a class="dropdown-item" href="searchArtist.html">Artista</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="searchPlaylist.html">Ricerca playlist</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="myProfile.html">Profilo</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="forYou.html">Suggeriti</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <form class="d-flex">
+                    <button class="btn btn-outline-secondary" onclick="logOut()">Logout</button>
+                </form>
+
+            </div>
+        </nav>
+
+        <div id="successImport" class="alert alert-success" role="alert" style="display: none;">
+        </div>
+
+        <div class="container mt-3">
+
+            <form onsubmit="return addplaylist(event)">
+
+                <div class="row row-cols-1 row-cols-sm-2">
+
+                    <div class="mb-3 col">
+                        <input name="playlist_nome" id="playlist_nome" class="form-control" type="text"
+                            placeholder="dai un nome alla playlist" value="">
+                    </div>
+
+                    <div class="mb-3 col">
+                        <input name="playlist_desc" id="playlist_desc" class="form-control" type="text"
+                            placeholder="inserisci una descizione della playlist" value="">
+                    </div>
+
+                    <div class="mb-3 col">
+                        <input name="playlist_tag" id="playlist_tag" class="form-control" type="text"
+                            placeholder="inserisci dei #tag che descivono la playlist" value="">
+                    </div>
+
+                    <div class="mb-3 col">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="pubblica"
+                                value="pubblica" checked>
+                            <label class="form-check-label" for="pubblica">pubblica</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="privata"
+                                value="privata">
+                            <label class="form-check-label" for="privata">privata</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 col">
+                        <button class="btn btn-primary">crea</button>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="container mt-3">
+            <form>
+                <input name="cerca" id="cerca" class="form-control" type="text" placeholder="cerca una playlist.."
+                    onkeyup="searchTag()">
+            </form>
+        </div>
+
+        <div class="container mt-3">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>import</th>
+                        <th>titolo</th>
+                        <th>descrizione</th>
+                        <th>tag</th>
+                        <th>tracks</th>
+                        <th>durata totale</th>
+                    </tr>
+                </thead>
+                <tbody id="resultPlalist">
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="sessione.js"></script>
+    <script src="script.js"></script>
+    <script>
+
+        getToken()
+        checkLogin()
+
+        function searchTag() {
+
+            var tbody = document.getElementById('resultPlalist')
+            tbody.innerHTML = ""
+
+            var playlists = window.localStorage.getItem('playlists')
+            var query = document.getElementById('cerca').value
+
+            if (query.length > 1) {
+
+                if (playlists != null) {
+                    playlists = JSON.parse(playlists)
+                    for (var i = 0; i < playlists.length; i++) {
+                        if (playlists[i].owner != window.localStorage.getItem('logged') && playlists[i].public == true
+                         && playlists[i].tag.toLowerCase().includes(query.toLowerCase())){
+
+                            let playlistName = playlists[i].nome
+                            let playlistDescription = playlists[i].descrizione
+                            let playlistTag = playlists[i].tag
+                            let playlistPublic = playlists[i].public
+                            let trackInfo = playlists[i].tracks.map(track => getTracksInfo(track))
+
+                            tbody.innerHTML +=
+                                `<tr><td><button class='btn btn-primary' onclick='importPlaylist("${playlistName}")'> + </button></td>` +
+                                "<td>" + playlistName + "</td><td>"
+                                + playlistDescription + "</td><td>"
+                                + playlistTag + "</td><td>"
+                                + stato(playlistPublic) + "</td><td id='tracks-" + playlistName + "'></td>"
+                                + "<td id='time-" + playlistName + "'> 00:00 </td><tr>"
+
+                            const trackInfoResponse = trackInfo.map(promise => promise.then(response => {
+
+                                let tracksTr = document.getElementById("tracks-" + playlistName)
+                                tracksTr.innerHTML += response.name + "<br>"
+                                let timeTr = document.getElementById("time-" + playlistName)
+                                var contenuto = minutesAndSecondsTomillis(timeTr.innerHTML)
+                                var nuovo = response.duration_ms
+                                timeTr.innerHTML = millisToMinutesAndSeconds(nuovo + contenuto)
+
+
+                            }))
+
+                        }
+                    }
+                }
+            }
+        }
+
+        function minutesAndSecondsTomillis(minSec) {
+            var timeParts = minSec.split(":");
+            return timeParts[0] * 60000 + (timeParts[1] * 1000)
+
+        }
+
+        function importPlaylist(nome) {
+
+            clearBadgeImportSuccess()
+
+            var playlists = window.localStorage.getItem('playlists')
+            playlists = JSON.parse(playlists)
+
+            for (var i = 0; i < playlists.length; i++) {
+                if (playlists[i].nome == nome &&  playlists[i].owner != window.localStorage.getItem('logged'))
+                    var index = i
+            }
+
+            var playlist = {
+                nome: nome,
+                descrizione: playlists[index].descrizione,
+                tag: playlists[index].tag,
+                public: playlists[index].public,
+                owner: window.localStorage.getItem('logged'),
+                tracks: playlists[index].tracks
+            }
+
+            //controllo se la playlist inserita ha lo stesso nome di una playlist già creata
+            if (findPlaylist(playlists, playlist)) {
+                alert("playlists già registrata")
+            } else {
+                playlists.push(playlist)
+                importSuccess()
+            }
+
+            window.localStorage.setItem('playlists', JSON.stringify(playlists))
+
+
+        }
+
+        function importSuccess() {
+            var success = document.getElementById('successImport');
+            success.style.display = "block";
+            success.innerHTML = "<p> Playlist importata con successo! </p>"
+
+        }
+
+        function clearBadgeImportSuccess() {
+
+            var success = document.getElementById('successImport');
+            success.style.display = "none";
+            innerHTML = success.innerHTML = ""
+        }
+
+        
+        function getTracksInfo(id) {
+            return fetch("https://api.spotify.com/v1/tracks/" + id, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + window.localStorage.getItem("spotifyToken")
+                },
+            })
+            .then((response) => {
+                    if (response.ok) {
+                        return response.json()
+                    }
+                    throw new Error("Qualcosa è andato storto")
+            })
+            .catch((error) => console.log(error)) 
+        }
+
+        searchTag()
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>GCMO | home</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    
+
+</head>
+
+<body>
+
+    <div id="form" class="container mt-3">
+        <h2 class="text-center">Accedi</h2>
+        <div class="mb-3">
+          <label for="exampleInputEmail" class="form-label">Email address</label>
+          <input type="email" id="email" class="form-control"  value="" placeholder="name@example.com" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword" class="form-label">Password</label>
+          <input type="password" id="password" class="form-control" value="" placeholder="password">
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="login()">Accedi</button> oppure  <a href="signIn.html">Registrati</a>
+    </div>
+
+    <div id="loggato" class="container visually-hidden">
+
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="homepage.html">GCMO</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+    
+                        <li class="nav-item">
+                            <a class="nav-link active" href="homepage.html">Home</a>
+                        </li>
+    
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="ricercaPer" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Ricerca canzoni per
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="searchTrack.html">Track</a></li>
+                                <li><a class="dropdown-item" href="searchAlbum.html">Album</a></li>
+                                <li><a class="dropdown-item" href="searchArtist.html">Artista</a></li>
+                            </ul>
+                        </li>
+    
+                        <li class="nav-item">
+                            <a class="nav-link" href="searchPlaylist.html">Ricerca playlist</a>
+                        </li>
+    
+                        <li class="nav-item">
+                            <a class="nav-link" href="myProfile.html">Profilo</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="forYou.html">Suggeriti</a>
+                        </li>
+    
+                    </ul>
+                </div>
+                <form class="d-flex">
+                    <button class="btn btn-outline-secondary" onclick="logOut()" >Logout</button>
+                </form> 
+            </div>
+        </nav>
+    
+        <div class="container mt-3" style="font-size: large">
+            Benvenutə sull’applicazione web di Gestione di Comunità Musicali Online (GCMO) 🎶 <br>
+            Attraverso GCMO potrai creare playlist musicali e condividerle con altri utenti! <br><br>
+            Crea una playlist: puoi creare una playlist in ogni momento. In quasi tutte le pagine in alto potrai trovare un form 
+            dove inserire nome, descrizione e tag e puoi decidere se renderla pubblica o privata. <br><br>
+            In seguito riempi la playlist con delle tracce musicali che puoi cercare in diversi modi:
+            <ul>
+                <li>cerca una traccia digitando il <a href="searchTrack.html">titolo</a>.</li>
+                <li>cerca una traccia a partire da un <a href="searchAlbum.html"> album</a>.</li>
+                <li>cerca le tracce più popolari di un <a href="searchArtist.html">artista</a>.</li>
+              </ul>  
+            
+            <br>
+            Puoi anche:
+            <ul>
+                <li>cercare tramite <a href="searchPlaylist.html">tag</a> le playlist pubbliche di altri utenti e importarle fra le tue playlist.</li>
+                <li> trovare le canzoni <a href="forYou.html">suggerite</a> in base alle tue preferenze musicali.</li>
+                <li>modificare ed eliminare le playlist e le tue informazioni dal tuo <a href="myProfile.html">profilo</a>.</li>
+                <li>quando lo desideri puoi sloggare da GCMO cliccando sul tasto in alto a destra.</li>
+            </ul>
+    
+            
+        </div>
+
+    </div>
+
+    <script src="sessione.js"></script>
+    <script src="script.js"></script>
+    <script>
+        checkLogin()
+    </script>
+
+</body>
+
+</html>
